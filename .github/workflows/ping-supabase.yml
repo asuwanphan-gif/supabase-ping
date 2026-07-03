@@ -1,9 +1,12 @@
 name: Ping Supabase Projects
+
 on:
   schedule:
     - cron: '0 1 * * 1'
-    - cron: '0 1 * * 4'
+    - cron: '0 1 * * 3'
+    - cron: '0 1 * * 5'
   workflow_dispatch:
+
 jobs:
   ping:
     runs-on: ubuntu-latest
