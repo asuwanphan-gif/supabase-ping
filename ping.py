@@ -1,5 +1,4 @@
 import urllib.request, urllib.error
-
 PROJECTS = [
   ("ssk-rs",
    "https://qidtrlakxasksvovkopo.supabase.co",
@@ -26,13 +25,23 @@ PROJECTS = [
    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
    ".eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndwdGp4bHNhcnprZ3VpdHBicWljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyODc1MjIsImV4cCI6MjA5Mjg2MzUyMn0"
    ".pa_hTULLJSMSBtXOuUiQfqbrqCUy_gnj_0i0k92K2IY"),
+  ("stopdrinkssk-ui",
+   "https://fvyhpgvmdpzkihvratbg.supabase.co",
+   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+   ".eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2eWhwZ3ZtZHB6a2lodnJhdGJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MTY1MzEsImV4cCI6MjA5NTE5MjUzMX0"
+   ".P7djsZcyLxjeCLAGAgKfBQLO4kJ6BlsrqXtn1FUJ5xw"),
 ]
-
 for name, url, key in PROJECTS:
     try:
         req = urllib.request.Request(
-            url + "/rest/v1/",
-            headers={"apikey": key, "Authorization": "Bearer " + key}
+            url + "/rest/v1/rpc/ping",
+            method="POST",
+            data=b"{}",
+            headers={
+                "apikey": key,
+                "Authorization": "Bearer " + key,
+                "Content-Type": "application/json",
+            },
         )
         with urllib.request.urlopen(req, timeout=15) as r:
             print("[OK]   " + name + " -> HTTP " + str(r.status))
